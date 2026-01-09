@@ -1,1 +1,360 @@
-<h1>Welcome to RTX Project</h1><p>This project is hosted on GitHub Pages.</p>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afnan AI - Ultra Bold Custom</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --accent-sky: #00d2ff;
+            --silver-glow: #C0C0C0;
+            --section-gap: 599px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* الخلفية الفضائية المتحركة */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #0a0a1a 0%, #000000 100%);
+        }
+
+        header {
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
+        }
+
+        .logo-img { height: clamp(35px, 5vw, 45px); }
+
+        .top-login-btn {
+            padding: 0.8rem 2.2rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.4s;
+        }
+
+        .main-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 180px 5% 0;
+        }
+
+        /* العنوان العلوي - سميك جداً بحروف عادية */
+        .top-welcome-msg {
+            font-size: clamp(1.4rem, 5vw, 2.8rem);
+            color: var(--accent-sky);
+            font-weight: 900; /* سماكة قصوى */
+            letter-spacing: 1px;
+            margin-bottom: 3rem;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+
+        /* الكلمة الرئيسية المتوهجة */
+        .afnan-hero-text {
+            font-size: clamp(3.5rem, 15vw, 8rem);
+            font-weight: 900;
+            color: #e0e0e0;
+            position: relative;
+            letter-spacing: -2px;
+            text-align: center;
+            text-shadow: 0 0 30px rgba(192, 192, 192, 0.4);
+            margin-bottom: 220px;
+        }
+
+        .letter-a {
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(90deg, #555 50%, #fff 50%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(4px 0 15px rgba(0, 210, 255, 0.6));
+        }
+
+        /* مستطيل الدردشة */
+        .chat-container {
+            width: 100%;
+            max-width: 850px;
+            margin-bottom: var(--section-gap);
+        }
+
+        .chat-box {
+            background: rgba(15, 15, 15, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 40px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            min-height: 220px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(25px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .chat-input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: clamp(1.1rem, 3vw, 1.4rem);
+            outline: none;
+            resize: none;
+            width: 100%;
+        }
+
+        .send-btn {
+            width: 55px;
+            height: 55px;
+            background: #fff;
+            border: none;
+            border-radius: 50%;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            align-self: flex-end;
+            font-size: 1.3rem;
+        }
+
+        /* معرض الصور */
+        .gallery-section {
+            width: 100%;
+            max-width: 1200px;
+            margin-bottom: var(--section-gap);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 30px;
+            overflow: hidden;
+            height: 450px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.5s;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* المستطيل العريض السفلي */
+        .wide-bar-section {
+            width: 100%;
+            max-width: 1400px;
+            margin-bottom: 120px;
+            padding: 0 5%;
+        }
+
+        .afnan-wide-bar {
+            width: 100%;
+            min-height: 450px;
+            background: rgba(15, 15, 15, 0.7);
+            border-radius: clamp(40px, 10vw, 80px);
+            border-top: 6px solid var(--silver-glow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 50px;
+            backdrop-filter: blur(20px);
+        }
+
+        .bar-logo { height: 90px; margin-bottom: 2rem; }
+        .bar-title { 
+            font-size: clamp(2.5rem, 8vw, 4.5rem); 
+            font-weight: 900; 
+            color: #fff; 
+            margin-bottom: 2rem; 
+        }
+        
+        .bar-login-btn {
+            padding: 1.2rem 4rem;
+            background: #fff;
+            color: #000;
+            text-decoration: none;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: 0.4s;
+        }
+
+        /* الروابط الجانبية */
+        .footer-links {
+            width: 100%;
+            padding: 0 5%;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 120px;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.4);
+            text-decoration: none;
+            font-size: 1.1rem;
+            width: max-content;
+        }
+
+        /* كلمة الحقوق النهائية - سميكة وحروف عادية */
+        .copyright-final {
+            padding: 0 5% 80px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            font-weight: 900; /* سماكة قصوى */
+            letter-spacing: 1px;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            :root { --section-gap: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header>
+        <img src="https://i.postimg.cc/ZqdJYH4v/grok-image-x6em5fj-edit-96291120058942.png" alt="Logo" class="logo-img">
+        <a href="afnan.html" class="top-login-btn">Login</a>
+    </header>
+
+    <div class="main-wrapper">
+        
+        <!-- Welcome Title - الحرف الأول كبيراً والبقية صغيراً مع سماكة 900 -->
+        <div class="top-welcome-msg">Welcome to Afnan ai 2026</div>
+
+        <!-- Hero Text Section -->
+        <h1 class="afnan-hero-text">
+            <span class="letter-a">A</span>fnan ai
+        </h1>
+
+        <!-- Chat Container -->
+        <div class="chat-container">
+            <div class="chat-box">
+                <textarea class="chat-input" placeholder="Start a conversation..."></textarea>
+                <button class="send-btn" onclick="window.location.href='afnan.html'">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- معرض الصور -->
+        <div class="gallery-section">
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop" alt="AI"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1614728263952-84ea256f9679?q=80&w=1200&auto=format&fit=crop" alt="Space"></div>
+            <div class="gallery-item"><img src="https://images.unsplash.com/photo-1620712943543-bcc4628c9759?q=80&w=1200&auto=format&fit=crop" alt="Digital"></div>
+        </div>
+
+        <!-- Bottom Wide Bar Section -->
+        <div class="wide-bar-section">
+            <div class="afnan-wide-bar">
+                <img src="https://i.postimg.cc/ZqdJYH4v/grok-image-x6em5fj-edit-96291120058942.png" class="bar-logo" alt="Logo">
+                <h2 class="bar-title">Afnan ai</h2>
+                <a href="afnan.html" class="bar-login-btn">Login to Afnan AI</a>
+            </div>
+        </div>
+
+        <!-- Links Section -->
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">User Agreement</a>
+            <a href="#">About Us</a>
+        </div>
+
+        <!-- Copyright Final - الحرف الأول كبيراً والبقية صغيراً مع سماكة 900 -->
+        <div class="copyright-final">
+            Afnan ai 2026
+        </div>
+
+    </div>
+
+    <script>
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let stars = [];
+        let width, height;
+
+        function init() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            stars = [];
+            for (let i = 0; i < 200; i++) {
+                stars.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height,
+                    size: Math.random() * 2,
+                    opacity: Math.random(),
+                    speed: Math.random() * 0.1 + 0.05,
+                    blink: Math.random() * 0.01
+                });
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, width, height);
+            stars.forEach(s => {
+                ctx.beginPath();
+                ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${s.opacity})`;
+                ctx.fill();
+                s.y += s.speed;
+                if (s.y > height) s.y = 0;
+                s.opacity += s.blink;
+                if (s.opacity > 1 || s.opacity < 0.2) s.blink *= -1;
+            });
+            requestAnimationFrame(draw);
+        }
+
+        window.addEventListener('resize', init);
+        init();
+        draw();
+    </script>
+</body>
+</html>
+
